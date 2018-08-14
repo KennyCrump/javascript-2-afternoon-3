@@ -113,18 +113,28 @@ contains(names, 'Colt', function(result){
   Remove any duplicate values from the array, and invoke the callback with the modified array as an argument.
 */
 
-function uniq(arr, callback){
-  for(let i = arr.length -1; i >= 0; i--){
-    for(let j = 0; j < i; j++){
-      if(arr[i] === arr[j]){
-        arr.splice(i,1);
-      }
-    }
+// function uniq(arr, callback){
+//   for(let i = arr.length -1; i >= 0; i--){
+//     for(let j = 0; j < i; j++){
+//       if(arr[i] === arr[j]){
+//         arr.splice(i,1);
+//       }
+//     }
+//   }
+//   callback(arr);
+// }
+// function uniq(arr, callback){
+//   var newArray = []
+//   for(let i = 0; i < arr.length; i++){
+//     if(newArray.indexOf(arr[i]) !== -1){
+//       newArray.push(arr[i])
+//     }
+//     callback(newArray);
+//   }
+  function uniq(arr, callback){
+    var newArray = arr.filter((e, i) => arr.indexOf(e, i + 1) === -1)
+    callback(newArray)
   }
-  callback(arr);
-}
-
-
 // Do not edit the code below.
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
